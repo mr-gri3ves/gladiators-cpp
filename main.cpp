@@ -1,26 +1,24 @@
 #include <iostream>
+#include <vector>
 
-#include "Colliseum.h"
+#include "Gladiator.h"
 
 int main()
 {
-    Colliseum c;
 
     std::vector<Gladiator> gladiators;
 
     Gladiator spartacus("Spartacus");
-    Gladiator maximus("Maximus");
-    Gladiator cadmus("Cadmus");
+    Gladiator spartacusEvilTwin = std::move(spartacus);
 
-    gladiators.push_back(spartacus);
-    gladiators.push_back(maximus);
-    gladiators.push_back(cadmus);
+    std::cout << spartacusEvilTwin << std::endl;
+    std::cout << spartacus << std::endl;
 
-    c.setGladiators(gladiators);
+    gladiators.push_back(std::move(spartacusEvilTwin));
 
-    for (const auto &gladiator : c.getGladiators())
-    {
-        std::cout << gladiator.getName() << std::endl;
-    }
+    std::cout << spartacusEvilTwin << std::endl;
+
+    std::cout << gladiators[0] << std::endl;
+
     return 0;
 }
